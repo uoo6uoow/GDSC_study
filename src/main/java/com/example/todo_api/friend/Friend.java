@@ -19,12 +19,17 @@ public class Friend {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    @JoinColumn(name = "friend_member_id")
+    @JoinColumn(name = "friend_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Member fMember;
+    private Member friend;
 
-    public Friend(Member member, Member fMember) {
+    private String status; //친구 상태 (요청, 수락)
+
+    public Friend(Member member, Member friend) {
         this.member = member;
-        this.fMember = fMember;
+        this.friend = friend;
     }
+
+
+
 }

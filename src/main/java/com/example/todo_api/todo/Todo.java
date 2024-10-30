@@ -18,15 +18,18 @@ public class Todo {
     @Column(name = "todo_content", columnDefinition = "varchar(200)")
     private String content;
     @Column(name = "todo_is_chckded", columnDefinition = "tinyint(1)")
-    private boolean isChecked;
+    private boolean isChecked = false;
     //외래키 등록
     @JoinColumn(name = "member_id")
     @ManyToOne(fetch = FetchType.LAZY) //투두는 다대일 관계에서 다수의 입장이므로 ManyToOne 사용
     private Member member;
 
-    public Todo(String content, boolean isChecked, Member member) { //id는 @GeneratedValue로 이미 생성
+    public Todo(String content, Member member) { //id는 @GeneratedValue로 이미 생성
         this.content = content;
-        this.isChecked = isChecked;
         this.member = member;
+    }
+
+    public void updateContent(String newContent) {
+        this.content = newContent;
     }
 }
