@@ -40,7 +40,7 @@ public class TodoRepositoryTest {
 
     @Test
     @Transactional
-    void todoRindOneByIdTest() {
+    void todoFindOneByIdTest() {
         // given
         Todo todo = new Todo("todo_content", null);
         todoRepository.save(todo);
@@ -56,7 +56,7 @@ public class TodoRepositoryTest {
 
     @Test
     @Transactional
-    void todoRindAllTest() {
+    void todoFindAllTest() {
         Todo todo1 = new Todo("todo_content1", null);
         Todo todo2 = new Todo("todo_content2", null);
         Todo todo3 = new Todo("todo_content3", null);

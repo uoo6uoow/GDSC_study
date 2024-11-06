@@ -15,10 +15,13 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //값이 자동으로 1씩 증가, identity -> 사용자 지정
     @Column(name = "todo_id")
     private Long id;
+
     @Column(name = "todo_content", columnDefinition = "varchar(200)")
     private String content;
+
     @Column(name = "todo_is_chckded", columnDefinition = "tinyint(1)")
     private boolean isChecked = false;
+
     //외래키 등록
     @JoinColumn(name = "member_id")
     @ManyToOne(fetch = FetchType.LAZY) //투두는 다대일 관계에서 다수의 입장이므로 ManyToOne 사용
@@ -31,5 +34,10 @@ public class Todo {
 
     public void updateContent(String newContent) {
         this.content = newContent;
+    }
+    public void check() {
+        if (!this.isChecked) {
+            this.isChecked = true;
+        }else this.isChecked = false;
     }
 }

@@ -23,13 +23,18 @@ public class Friend {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member friend;
 
-    private String status; //친구 상태 (요청, 수락)
+    @Column(name = "isFriend", columnDefinition = "tinyint(1)")
+    private boolean isFriend = false;
+
 
     public Friend(Member member, Member friend) {
+
         this.member = member;
         this.friend = friend;
     }
 
-
+    public void updateFriend(boolean accept) {
+        isFriend = accept;
+    }
 
 }
