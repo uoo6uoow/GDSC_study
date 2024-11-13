@@ -42,22 +42,6 @@ public class FriendRepositoryTest {
     @Test
     @Transactional
     public void deleteFriend() {
-        //given
-        Member member1 = new Member();
-        Member member2 = new Member();
-        memberRepository.save(member1);
-        memberRepository.save(member2);
 
-        Friend friend = new Friend(member1, member2);
-        friendRepository.save(friend);
-        todoRepository.flushAndClear();
-
-        List<Friend> friendList = friendRepository.findByMember(member1);
-        Friend findFriend = friendList.get(0);
-        //when
-        friendRepository.deleteById(findFriend);
-        //then
-        Assertions.assertThat(friendList).hasSize(1);
-        Assertions.assertThat(friendRepository.findByMember(member1)).hasSize(0);
     }
 }

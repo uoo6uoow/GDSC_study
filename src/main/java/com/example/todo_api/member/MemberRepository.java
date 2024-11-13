@@ -21,11 +21,13 @@ public class MemberRepository {
     }
 
     public Member findByLoginId(String loginId) {
-        return em.find(Member.class, loginId);
+        return em.createQuery("SELECT m from Member m WHERE m.loginId = :loginId", Member.class)
+                .setParameter("loginId", loginId)
+                .getSingleResult();
     }
 
     //삭제
-    public void deleteMember(Long memberId) {
+    public void deleteById(Long memberId) {
         Member member = findById(memberId);
         em.remove(member);
     }

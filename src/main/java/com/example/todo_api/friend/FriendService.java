@@ -1,13 +1,16 @@
 package com.example.todo_api.friend;
 
+import com.example.todo_api.friend.dto.FriendResponse;
 import com.example.todo_api.member.Member;
 import com.example.todo_api.member.MemberRepository;
+import com.example.todo_api.member.dto.MemberResponse;
 import com.example.todo_api.todo.Todo;
 import com.example.todo_api.todo.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,7 +23,7 @@ public class FriendService {
 
     //친구 요청
     @Transactional
-    public void request(Long memberId, Long friendId) throws Exception {
+    public Long friendRequest(Long memberId, Long friendId) throws Exception {
         Member member = memberRepository.findById(memberId);
         Member friend = memberRepository.findById(friendId);
 
@@ -30,6 +33,8 @@ public class FriendService {
 
         Friend newFriend = new Friend(member, friend);
         friendRepository.save(newFriend);
+
+        return newFriend.getId();
     }
 
     //친구 수락
@@ -52,7 +57,6 @@ public class FriendService {
         if (member == null) {
             throw new Exception("존재하지 않는 유저입니다");
         }
-
         return friendRepository.findByMember(member);
     }
 

@@ -32,6 +32,9 @@ public class Friend {
         this.member = member;
         this.friend = friend;
     }
+    public boolean isFriend() {
+        return isFriend;
+    }
 
     public void updateFriend(boolean accept) {
         isFriend = accept;
